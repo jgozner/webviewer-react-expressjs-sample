@@ -54,6 +54,16 @@ const App = () => {
     });
   }
 
+  const openFirstBookmark = async () => {
+    const { documentViewer} = instance.Core;
+
+    const doc = await documentViewer.getDocument();
+    const bookmarks = await doc.getBookmarks();
+    if(bookmarks.length >= 1){
+      documentViewer.displayBookmark(bookmarks[0])
+    }
+  }
+
   return (
     <div className="App">
       <div className="header" style={{backgroundColor: "#00a5e4"}}>
@@ -62,6 +72,7 @@ const App = () => {
           <>
             <button onClick={importXFDF} style={{marginLeft: "15px"}}>Import XFDF</button>
             <button onClick={exportXFDF} style={{marginLeft: "15px"}}>Export XFDF</button>
+            <button onClick={openFirstBookmark} style={{marginLeft: "15px"}}>Open Bookmark</button>
           </>
         )}
       </div>
